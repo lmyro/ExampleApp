@@ -2,6 +2,7 @@
 #!/usr/bin/env bash
 sudo apt update
 sudo apt install nodejs npm
+y
  # install pm2 which is production process manager for nodejs w/ built in load balancer
 npm install -g pm2
  # stop any instance of application running
