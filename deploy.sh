@@ -9,5 +9,7 @@ pm2 stop example_app
 cd ExampleApp/
  # install app dependencies
 sudo npm install
+echo $PRIVATE_KEY > privatekey.pem
+echo $SERVER > server.crt
  # start app w/ process name example_app
 pm2 start ./bin/www --name example_app 
