@@ -8,6 +8,6 @@ npm install -g pm2
  # change directory into folder where application is downloaded
  cd ExampleApp/
  # install app dependencies
-npm install
+sudo npm install
  # start app w/ process name example_app
  pm2 start ./bin/www --name example_app 
