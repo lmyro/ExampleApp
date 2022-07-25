@@ -6,7 +6,7 @@
  # stop any instance of application running
  pm2 stop example_app
  # change directory into folder where application is downloaded
- cd ExampleApplication/
+ cd ExampleApp/
  # install app dependencies
  npm install
  # start app w/ process name example_app
