@@ -9,11 +9,17 @@ workflows:
             branches:
               only:
                 - main
-
+      - deploy:
+          filters:
+            branches:
+              only:
+                - main
+          requires:
+            - build
 
 jobs:
   build:
-    working_directory: ~/ExampleAppgit 
+    working_directory: ~/ExampleApplication
     docker:
       - image: circleci/node:10.16.3
     steps:
@@ -27,9 +33,16 @@ jobs:
           name: install-npm-wee
           command: npm install
       - run:
-          name: itest-run
+          name: test-run
           command: npm run test
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules
+  deploy:
+    docker:
+      - image: circleci/node:10.16.3
+    steps:
+      -  run:
+          name: deploy-application
+          command: ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "rm -rf ExampleApp/;git clone https://github.com/lmyro/ExampleApp.git; source ExampleApplication/deploy.sh"
